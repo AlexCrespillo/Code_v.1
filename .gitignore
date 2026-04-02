@@ -1,0 +1,37 @@
+# Data files (too large for Git — download separately, see README)
+data/*.csv
+data/spatial/*.shp
+data/spatial/*.shx
+data/spatial/*.dbf
+data/spatial/*.prj
+data/spatial/*.cpg
+data/spatial/*.tif
+data/spatial/*.tfw
+
+# Outputs (reproducible from notebooks)
+output/**/*.csv
+output/**/*.png
+output/**/*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Paper PDF (keep locally, not in repo)
+*.pdf
+
+# Claude Code
+.claude/
