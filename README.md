@@ -15,7 +15,7 @@ The method is applied to daily streamflow data from **33 gauging stations** in t
 ```
 .
 ├── data/                        # Input data (not tracked by Git — see below)
-│   ├── spatial/                 # Shapefiles, DEM raster
+│   ├── spatial/                 # Shapefiles, DEM raster (not distributed; empty in the repository)
 │   ├── caudales_raw.csv         # Raw CEDEX discharge records
 │   ├── upstream_connectivity.csv
 │   └── ...
@@ -26,12 +26,14 @@ The method is applied to daily streamflow data from **33 gauging stations** in t
 ├── 03_ssi_transformation.ipynb  # Step 3: Daily SSI computation
 ├── 04_ssi_drought_events.ipynb  # Step 4: Drought event detection
 ├── 05_ssi_propagation.ipynb     # Step 5: Propagation chain construction
+├── 05b_ssi_propagation_vectorised.ipynb  # Step 5, optimised: vectorised matching, identical results to 05
 ├── 06_ssi_propagation_sensitivity.ipynb  # Step 6: Parameter sensitivity analysis
 ├── 07_combined_chain_figure.ipynb        # Figure: Combined chain visualisation
 ├── 08_discharge_distribution_figure.ipynb # Figure: Discharge distribution
 ├── 09_drought_event_figure.ipynb          # Figure: Single drought event
 ├── 10_study_area_figure.ipynb             # Figure: Study area map + distribution
 ├── 11_chain_metrics_distribution_figure.py # Figure: Chain metric distributions
+├── revision_analyses/           # Analyses added during peer review (Supplementary Material, see below)
 ├── requirements.txt
 └── README.md
 ```
@@ -45,7 +47,8 @@ Raw discharge data
   │
   ▼
 01  Quality control & station filtering
-  │   → Filters 302 stations down to 45 (then 33 after SSI screening)
+  │   → Filters 302 stations (295 with records in 1961-2020) down to 45
+  │     (then 33 after SSI screening)
   │   → Thresholds: ≤30% NaN, ≤365-day gaps, ≤120-day zero-flow runs
   ▼
 02  Hierarchical gap-filling (imputation)
@@ -70,21 +73,51 @@ Raw discharge data
   │   → Minimum temporal overlap (M = 5 days)
   │   → Deterministic tie-breaking (overlap → severity → proximity → ID)
   │   → Lag filter: retain only upstream_start ≤ origin_start
+  │   → 05b: vectorised re-implementation of the matching step; writes the same
+  │     output files and checks that its results are identical to 05
   ▼
 06  Parameter sensitivity analysis
       → Grid search: W ∈ [0, 120] days, M ∈ [1, 30] days (750 combinations)
       → Metrics: RSI, marginal gain, Kneedle elbow detection
 ```
 
+`05b_ssi_propagation_vectorised.ipynb` can replace `05_ssi_propagation.ipynb` in the workflow. It applies the same algorithm with integer day arithmetic and `numpy` array operations instead of row-wise `pandas` operations, which makes the matching step about two orders of magnitude faster. The notebook re-runs the original implementation on the same inputs and verifies that the complete pair table is identical before saving any output.
+
+## Revision analyses
+
+The folder `revision_analyses/` contains the analyses carried out during peer review and reported in the Supplementary Material. Each subfolder includes the code and the resulting data files; see [`revision_analyses/README.md`](revision_analyses/README.md) for how to run them and which inputs they need.
+
+| Folder | Supplementary Material | Analysis |
+|---|---|---|
+| `S3_lag_vs_distance/` | Section S3 | Propagation lag versus along-channel hydraulic distance |
+| `S4_permutation_null_test/` | Sections S4 and S1.4 | Network-permutation null test; temporal-overlap vs gap sensitivity |
+| `S5_detection_sensitivity/` | Section S5 | Sensitivity of the event catalogue to pooling gap and minimum duration |
+| `S6_meteorological_context/` | Section S6 | SPEI context of the three case studies |
+| `S7_non_propagating_events/` | Section S7 | Isolated downstream events and non-propagating upstream events |
+| `S8_national_catalogue/` | Section S8 | Validation against the national drought catalogue |
+| `case1_imputation_sensitivity/` | Section S6 | Robustness of Case 1 to imputed days at the origin station |
+| `excluded_stations/` | Section S9 | Metadata and reservoir-proximity test for the excluded stations |
+
 ## Data
 
 Input data files are **not included** in this repository due to size constraints. To reproduce the analysis:
 
 1. Place raw discharge data (`caudales_raw.csv`) and station metadata files in the `data/` folder.
-2. Place spatial data (DEM, shapefiles) in `data/spatial/`.
+2. Obtain the spatial data separately and place it in `data/spatial/` (see below).
 3. Run the notebooks in order (01 → 06), which will generate all intermediate CSV files in `data/`.
 
 The raw discharge data was obtained from the [CEDEX](https://ceh.cedex.es/anuarioaforos/default.asp) hydrological monitoring network.
+
+### Spatial data
+
+The spatial layers are **not distributed** with this repository and `data/spatial/` is empty in it; they are only needed by the map figures (notebooks 07 and 10). These notebooks expect the following files in `data/spatial/`, each shapefile with its companion `.shx`, `.dbf`, `.prj` and `.cpg` files:
+
+| File | Content |
+|---|---|
+| `Dem_bueno_fill.tif` (+ `.tfw`) | Hydrologically filled DEM of the Ebro basin |
+| `Limite_Cuenca_Ebro.shp` | Ebro basin boundary |
+| `Stream.shp` | River network |
+| `Estaciones_finalfinal.shp` | Gauging stations used in the study |
 
 ## Installation
 

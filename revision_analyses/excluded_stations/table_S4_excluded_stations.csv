@@ -1,0 +1,13 @@
+Station code,Gauging station,Catchment area (km2),Elevation (m a.s.l.),Nearest reservoir,Distance to reservoir (km),Reservoir-proximate,Exclusion stage,Reason for exclusion
+9039,Ortigosa,45,935,Gonzalez Lacasa,0.3,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9125,Carenas,1478,640,"Tranquera, La",0.4,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9034,Mansilla,242,860,Mansilla,0.6,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9110,Beceite,49,627,Pena,2.1,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9052,Beceite,48,580,Pena,4.4,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9042,Calamocha,1498,883,Lechago,4.7,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9041,Navarrete Del Rio,364,904,Lechago,5.3,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9035,Villoslada De Cameros,285,990,Pajares,5.5,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9086,Garinoain,76,494,Mairaga,6.6,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9073,Sangüesa,275,393,Yesa,9.2,Yes (<10 km),Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9010,Daroca,2202,750,Lechago,18.5,No,Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"
+9058,Jubera,196,892,Monteagudo De Las Vicarias,24.4,No,Stage 2 (SSI homogeneity screening),"Structural irregularity in the SSI distribution and temporal evolution (abrupt regime shifts, inhomogeneous high/low sequences)"

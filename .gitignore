@@ -7,6 +7,11 @@ data/spatial/*.prj
 data/spatial/*.cpg
 data/spatial/*.tif
 data/spatial/*.tfw
+data/spatial/*.sbn
+data/spatial/*.sbx
+data/spatial/*.aux.xml
+data/spatial/*.ovr
+data/spatial/*.shp.xml
 
 # Outputs (reproducible from notebooks)
 output/**/*.csv
@@ -32,6 +37,8 @@ Thumbs.db
 
 # Paper PDF (keep locally, not in repo)
 *.pdf
+# ...except the supplementary figures produced by the revision analyses
+!revision_analyses/**/*.pdf
 
 # Claude Code
 .claude/
