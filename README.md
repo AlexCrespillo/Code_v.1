@@ -1,5 +1,7 @@
 # Tracking Hydrological Drought Propagation in River Networks: An Event-Based Framework
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22755834.svg)](https://doi.org/10.5281/zenodo.22755834)
+
 This repository contains the complete analytical pipeline for the paper:
 
 > **Tracking Hydrological Drought Propagation in River Networks: An Event-Based Framework**
@@ -159,7 +161,11 @@ If you use this framework, please cite the article:
 
 > Crespillo López, A., Vicente Serrano, S.M., Gimeno Presa, L. Tracking Hydrological Drought Propagation in River Networks: An Event-Based Framework. *Journal of Hydrology* (under review).
 
-and the archived release of this code on Zenodo. Citation metadata for both are provided in [`CITATION.cff`](CITATION.cff).
+and the archived release of this code:
+
+> Crespillo López, A. (2026). *Tracking Hydrological Drought Propagation in River Networks: An Event-Based Framework (code)* (v2.0). Zenodo. https://doi.org/10.5281/zenodo.22755834
+
+Citation metadata for both are provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
 
