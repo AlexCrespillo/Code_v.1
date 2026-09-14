@@ -24,6 +24,10 @@ Pillow>=8.0.0
 # Sensitivity analysis (elbow/kneedle detection)
 kneed>=0.7.0
 
+# Revision analyses (revision_analyses/S3 network distances, S8 national catalogue .xlsx)
+networkx>=2.6
+openpyxl>=3.0.0
+
 # Jupyter notebooks
 jupyter>=1.0.0
 ipykernel>=6.0.0

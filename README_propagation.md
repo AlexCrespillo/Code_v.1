@@ -1,6 +1,6 @@
 # Hydrological Drought Propagation Analysis
 
-This document describes the algorithm implemented in `SSI_propagation.ipynb`, which detects and characterises **drought propagation chains** across river networks — sequences of drought events that travel from upstream tributaries down to a downstream outlet station.
+This document describes the algorithm implemented in `05_ssi_propagation.ipynb` (and, with identical results, in its vectorised version `05b_ssi_propagation_vectorised.ipynb`), which detects and characterises **drought propagation chains** across river networks — sequences of drought events that travel from upstream tributaries down to a downstream outlet station.
 
 ---
 
@@ -20,7 +20,7 @@ The analysis produces two outputs:
 
 | File | Description |
 |---|---|
-| `SSI_drought_events.csv` | Drought event catalogue (one row per event per station). Produced by `SSI_drought_events.ipynb`. |
+| `SSI_drought_events.csv` | Drought event catalogue (one row per event per station). Produced by `04_ssi_drought_events.ipynb`. |
 | `upstream_connectivity.csv` | For each station, the list of all hydraulically upstream gauging stations. |
 
 The event catalogue contains, for each event: `station_id`, `event_id`, `start_date`, `end_date`, `duration`, `severity` (SSI-based), and `severity_hm3` (volume-based).
@@ -244,11 +244,9 @@ An earlier version of this notebook included a Step 10 that merged chains whose 
 
 **1. Merging operated at the wrong level.** Chain intervals overlap because of long-duration *upstream* events, not because of continuity at the *origin* station. Two origin drought events that are months apart (e.g. April and November of the same year) can produce overlapping chain windows simply because a single upstream gauge remained in continuous drought throughout. Merging them creates a synthetic, multi-month episode that has no physical counterpart in the origin station record.
 
-**2. Loss of origin event integrity.** After merging, the `origin_end` field was set to the end of the *last* sub-chain's origin event. This meant the merged "origin event" encompassed long recovery periods above the SSI threshold, directly contradicting the event definition used in `SSI_drought_events.ipynb`. For example, a merged chain at station 9027 spanning April 2011 to January 2013 (696 days) actually comprised four separate origin events separated by months of normal flow — none of which individually exceeded a few weeks to months.
+**2. Loss of origin event integrity.** After merging, the `origin_end` field was set to the end of the *last* sub-chain's origin event. This meant the merged "origin event" encompassed long recovery periods above the SSI threshold, directly contradicting the event definition used in `04_ssi_drought_events.ipynb`. For example, a merged chain at station 9027 spanning April 2011 to January 2013 (696 days) actually comprised four separate origin events separated by months of normal flow — none of which individually exceeded a few weeks to months.
 
 The drought event catalogue already guarantees non-overlapping, continuous events at each station. There is therefore no true double-counting: each origin event is a distinct, well-defined, physically consistent observation. Computing all metrics independently per event is the most transparent and reproducible approach for peer-reviewed publication.
-
-The commented-out merge code is retained in the notebook (`merge-removed` cell) for audit purposes.
 
 ---
 
@@ -306,14 +304,15 @@ After the lag filter, the notebook runs four automated checks:
 ## File Structure
 
 ```
-SSI_propagation.ipynb               ← Main notebook (this algorithm)
-SSI_drought_events.ipynb            ← Upstream dependency: produces the event catalogue
-SSI_drought_events.csv              ← Input: event catalogue
-upstream_connectivity.csv           ← Input: network topology
-propagation_W45_minov5.csv          ← Output: all pairs (before lag filter)
-propagation_W45_minov5_lagneg.csv   ← Output: lag-filtered pairs + chain metrics
-chains_summary_W45_minov5.csv       ← PRIMARY OUTPUT: one chain per origin event
-Chains_final.csv                    ← Alias of chains_summary for downstream scripts
+05_ssi_propagation.ipynb                 ← Main notebook (this algorithm)
+05b_ssi_propagation_vectorised.ipynb     ← Vectorised version, identical results
+04_ssi_drought_events.ipynb              ← Upstream dependency: produces the event catalogue
+data/SSI_drought_events.csv              ← Input: event catalogue
+data/upstream_connectivity.csv           ← Input: network topology
+data/propagation_W45_minov5.csv          ← Output: all pairs (before lag filter)
+data/propagation_W45_minov5_lagneg.csv   ← Output: lag-filtered pairs + chain metrics
+data/chains_summary_W45_minov5.csv       ← PRIMARY OUTPUT: one chain per origin event
+data/Chains_final.csv                    ← Alias of chains_summary for downstream scripts
 ```
 
 ---

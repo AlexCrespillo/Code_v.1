@@ -123,8 +123,8 @@ The spatial layers are **not distributed** with this repository and `data/spatia
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/drought-propagation-framework.git
-cd drought-propagation-framework
+git clone https://github.com/AlexCrespillo/Code_v.1.git
+cd Code_v.1
 
 # Create a virtual environment (recommended)
 python -m venv venv
@@ -155,10 +155,12 @@ conda install -c conda-forge cartopy geopandas rasterio
 
 ## Citation
 
-If you use this framework, please cite:
+If you use this framework, please cite the article:
 
-> [Paper citation will be added upon publication]
+> Crespillo López, A., Vicente Serrano, S.M., Gimeno, L. Tracking Hydrological Drought Propagation in River Networks: An Event-Based Framework. *Journal of Hydrology* (under review).
+
+and the archived release of this code on Zenodo. Citation metadata for both are provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
 
-[License to be specified]
+This project is licensed under the MIT License; see [`LICENSE`](LICENSE).
