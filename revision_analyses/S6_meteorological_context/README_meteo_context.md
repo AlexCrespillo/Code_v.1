@@ -20,6 +20,10 @@ Reviewer #2 asks for meteorological drought context to help interpret the hydrol
 | `DATA_41_66_-0_88.csv` | Weekly SPEI/SPI at 41.66°N, −0.88°E | Station 9011 (Ebro at Zaragoza) — Case 2 |
 | `DATA_42_35_-1_65.csv` | Weekly SPEI/SPI at 42.35°N, −1.65°E | Station 9005 (Aragón at Caparroso) — Case 3 |
 
+**Data sources.** `SSI_daily.csv` is produced by the main pipeline (`03_ssi_transformation.ipynb`). The weekly SPEI/SPI series were downloaded for each coordinate from the CSIC drought monitor, *Base de datos histórica y monitor de sequías en tiempo real* (https://monitordesequia.csic.es). The dataset of drought indices behind the monitor is described in Vicente-Serrano et al. (2017). The script expects the file names in the table above, with underscores; if the downloaded files use dots in the coordinates (e.g. `DATA_40.81_0.52.csv`), rename them accordingly (e.g. `DATA_40_81_0_52.csv`).
+
+> Vicente-Serrano, S. M., Tomas-Burguera, M., Beguería, S., Reig, F., Latorre, B., Peña-Gallardo, M., Luna, M. Y., Morata, A., & González-Hidalgo, J. C. (2017). A High Resolution Dataset of Drought Indices for Spain. *Data*, 2(3), 22. https://doi.org/10.3390/data2030022
+
 **Coordinate derivation.** Station coordinates (UTM, provided in `Locations.csv`) were converted to latitude/longitude using EPSG:25830 (ETRS89 / UTM zone 30N) and cross-checked against the known real-world locations of Tortosa (≈40.81°N, 0.52°E), Zaragoza (≈41.65°N, −0.88°E) and Caparroso (≈42.34°N, −1.65°E); agreement to within ~0.01–0.02°, well within tolerance. A second candidate datum (ED50/UTM 30N) was also tested and gave answers within ~0.002° — the choice of datum does not affect which grid cell of the SPEI product is queried.
 
 ## 3. Method
@@ -74,7 +78,7 @@ Place `SSI_daily.csv` and the three `DATA_*.csv` SPEI files alongside the script
 
 - SPEI is queried at the **origin (downstream/outlet)** station's coordinates only. This is the natural point of comparison for that station's own SSI record, but it is only one point within each case's contributing catchment; a fully basin-representative or headwater-specific meteorological context (e.g. at the specific stations that trigger each chain, such as station 9018 for Case 1) was not attempted and would strengthen a future, fully coupled meteorological–hydrological extension.
 - Context-window boundaries are approximate (chosen by eye to resemble Figures 6–8) rather than pixel-matched to those figures; this was judged acceptable since the purpose here is illustrative meteorological context, not a quantitative re-analysis of the chains themselves.
-- The SPEI/SPI product's exact source, grid resolution and computation method were not independently re-derived here (data supplied by the author's team's operational SPEI monitor); the analysis takes the supplied series as given.
+- The SPEI/SPI series are used as distributed by the CSIC drought monitor (see Section 2, *Data sources*); their grid resolution and computation method (Vicente-Serrano et al., 2017) were not independently re-derived here.
 
 ## 8. Audit log
 

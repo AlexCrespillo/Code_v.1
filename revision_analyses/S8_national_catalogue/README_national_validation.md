@@ -18,6 +18,12 @@ The manuscript's internal validation (the network-permutation null test, Section
 | `data/SSI_drought_events.csv`, `data/upstream_connectivity.csv` | Same validated inputs as all previous analyses | 2,625 events, 33 stations |
 | `data/Identification_and_characteristics.xlsx` | The national catalogue (Trullenque-Blanco et al., 2024) | Two sheets: `Events` (40 documented drought episodes, 1916–2020) and `Time_series` (monthly national area-under-drought fraction) |
 
+**Data sources.** The national catalogue is openly available from DIGITAL.CSIC as *Spanish Drought Catalogue v1.0.0* (Trullenque Blanco et al., 2023); `Identification_and_characteristics.xlsx` is the file of its drought-episodes component. The catalogue and the method used to build it are described in Trullenque-Blanco et al. (2024).
+
+> Trullenque Blanco, V., Beguería, S., Vicente Serrano, S. M., Peña-Angulo, D., & González Hidalgo, J. C. (2023). Spanish Drought Catalogue (Version 1.0.0) [Dataset]. DIGITAL.CSIC. https://doi.org/10.20350/digitalcsic/15446
+>
+> Trullenque-Blanco, V., Beguería, S., Vicente-Serrano, S. M., Peña-Angulo, D., & González-Hidalgo, C. (2024). Catalogue of drought events in peninsular Spanish along 1916–2020 period. *Scientific Data*, 11, 703. https://doi.org/10.1038/s41597-024-03484-w
+
 ## 3. Method
 
 ### 3.1 Parsing the national catalogue, and a data-quality check
