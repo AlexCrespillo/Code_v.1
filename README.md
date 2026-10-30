@@ -159,7 +159,7 @@ conda install -c conda-forge cartopy geopandas rasterio
 
 If you use this framework, please cite the article:
 
-> Crespillo López, A., Vicente Serrano, S.M., Gimeno Presa, L. Tracking Hydrological Drought Propagation in River Networks: An Event-Based Framework. *Journal of Hydrology* (under review).
+> Crespillo López, A., Vicente Serrano, S.M., Gimeno Presa, L. (2026). Tracking Hydrological Drought Propagation in River Networks: An Event-Based Framework. *Journal of Hydrology*, 680, 136544. https://doi.org/10.1016/j.jhydrol.2026.136544
 
 and the archived release of this code:
 

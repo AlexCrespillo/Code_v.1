@@ -20,6 +20,11 @@ preferred-citation:
   type: article
   title: "Tracking Hydrological Drought Propagation in River Networks: An Event-Based Framework"
   journal: "Journal of Hydrology"
+  year: 2026
+  month: 11
+  volume: 680
+  start: 136544
+  doi: "10.1016/j.jhydrol.2026.136544"
   authors:
     - family-names: "Crespillo López"
       given-names: "Alex"
